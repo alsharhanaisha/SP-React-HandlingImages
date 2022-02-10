@@ -21,6 +21,10 @@ function ProductModal({ oldProduct }) {
   const handleChange = (event) =>
     setProduct({ ...product, [event.target.name]: event.target.value });
 
+  const handleImage = (event) => {
+    setProduct({ ...product, image: event.target.files[0] });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (oldProduct) productStore.updateProduct(product, oldProduct._id);
@@ -50,9 +54,8 @@ function ProductModal({ oldProduct }) {
               <InputGroup.Text>Image</InputGroup.Text>
               <FormControl
                 name="image"
-                value={product.image}
-                type="text"
-                onChange={handleChange}
+                type="file"
+                onChange={handleImage}
                 placeholder="Image"
               />
             </InputGroup>
